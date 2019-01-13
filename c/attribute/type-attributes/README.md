@@ -1,1 +1,4 @@
-# Type attributes
+# Type attributes  
+
+
+__attribute__((packed))
