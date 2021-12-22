@@ -4,16 +4,16 @@ Ví dụ: như struct bên dưới tốn 12 byte chứ không phải 9 byte.
 ```c
 #include <stdio.h>
 
-struct Normal_t
+typedef struct
 {
     char cdata; //4
     int idata; //4
     float fdata; //4
-};//12
+} Normal_t;//12
 
 int main(int argc, char const *argv[])
 {
-    struct Normal_t n;
+    Normal_t n;
     
     printf("Kich thuoc cac kieu du lieu trong C:\n");
     printf("\tsizeof(char): %d\n", (int)sizeof(char));
@@ -38,16 +38,16 @@ Lúc này kiểu struct bên dưới dưới sẽ tốn 9 byte.
 ```c
 #include <stdio.h>
 
-struct Packed_t  
+typedef struct 
 {  
     char cdata; //1  
     int idata; //4  
     float fdata; //4  
-}__attribute__ ((packed));// == minimum ==> 9  
+}__attribute__ ((packed)) Packed_t;// == minimum ==> 9  
 
 int main(int argc, char const *argv[])
 {
-    struct Packed_t p;  
+    Packed_t p;  
 
     printf("sizeof(Packed_t): %d\n", (int)sizeof(p)); 
 
@@ -60,18 +60,18 @@ Thuộc tính aligned(n) dùng để cho biết struct sẽ được cấp vùng
 sizeof struct = n*x, trong đó n là số byte để aligne, giá trị n = 2^m, tức là bằng cấp số mũ của 2; x là số nguyên dương với điều kiện x >= 1.
 
 ```c
-struct Aligned4_t  
+typeder struct 
 {  
     char cdata;  
     int idata;
-}__attribute__ ((aligned (4))); // 5 == align 4 ==> 8
+}__attribute__ ((aligned (4))) Aligned4_t; // 5 == align 4 ==> 8
 
-struct Aligned_t  
+typedef struct  
 {  
     char cdata;  
     int idata;  
     float fdata;  
-}__attribute__ ((aligned (8))); // 12 == align 8 ==> 16
+}__attribute__ ((aligned (8))) Aligned_t; // 12 == align 8 ==> 16
 ```
 
 ## \_\_attribute__ ((__transparent_union__))
